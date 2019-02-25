@@ -20,8 +20,8 @@ def outlierCleaner(predictions, ages, net_worths):
     
     number_to_keep = len(predictions) * 9 // 10
     errors = np.abs(predictions - net_worths)
-    idx_to_keep = np.argsort(errors)[0:number_to_keep]
+    idx = np.argsort(errors)[:number_to_keep]
 
-    cleaned_data = [(ages[i], net_worths[i], errors[i]) for i in idx_to_keep]
+    cleaned_data = zip(ages[idx], net_worths[idx], errors[idx])
 
     return cleaned_data 
